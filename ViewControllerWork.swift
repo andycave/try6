@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewControllerWork: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ViewControllerWork: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
     @IBOutlet var textWorkType: UITextField!
     @IBOutlet var pickerWorkType: UIPickerView!
@@ -17,7 +17,7 @@ class ViewControllerWork: UIViewController, UIPickerViewDataSource, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.pickerWorkType.isHidden = true
         // Do any additional setup after loading the view.
     }
 
@@ -47,15 +47,16 @@ class ViewControllerWork: UIViewController, UIPickerViewDataSource, UIPickerView
         self.pickerWorkType.isHidden = true
     }
 
-    
-    
- //   func textWorkTypeDidBeginEditing(textField: UITextField) {
-  //
-  //      if textField == textWorkType {
-  //          self.pickerWorkType.isHidden = false
-  //          textField.endEditing(true)
-  //      }
-   // }
+    func textFieldDidBeginEditing(_ textField: UITextField){ // became first responder
+        if textField == textWorkType {
+            self.pickerWorkType.isHidden = false
+        }
+    }
+
+    func textFieldDidEndEditing(_ textField: UITextField) { // may be called if forced even if shouldEndEditing returns NO
+        
+    }
+
     /*
     // MARK: - Navigation
 
